@@ -1,5 +1,6 @@
 import "./style.scss";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.querySelector("canvas.webgl");
 
@@ -21,6 +22,9 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 10;
 scene.add(camera);
+
+// Controls
+const controls = new OrbitControls(camera, canvas as HTMLElement);
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -51,7 +55,12 @@ const material = new THREE.MeshBasicMaterial({
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
+// Drawing
+
 const animate = () => {
+  // Update controls
+  controls.update();
+
   // Render
   renderer.render(scene, camera);
 
