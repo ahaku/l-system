@@ -1,8 +1,12 @@
 import "./style.scss";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import Drawing from "./drawing";
+import LSystem from "./LSystem";
 
 const canvas = document.querySelector("canvas.webgl");
+const lSystem = new LSystem();
+const drawing = new Drawing();
 
 // Scene
 const scene = new THREE.Scene();
@@ -47,15 +51,35 @@ window.addEventListener("resize", () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// Test mesh
-const geometry = new THREE.BoxBufferGeometry(3, 3, 3);
-const material = new THREE.MeshBasicMaterial({
-  color: "dodgerblue",
-});
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
-
 // Drawing
+let axiom = lSystem.tree.values.axiom;
+let rules = lSystem.tree.rules;
+let iterCount = lSystem.tree.values.iterations;
+let angleDelta = lSystem.tree.values.angleDelta;
+
+let geometry: null | THREE.BufferGeometry = null;
+let material: null | THREE.LineBasicMaterial = null;
+let mesh: null | THREE.LineSegments = null;
+
+const createMesh = () => {
+  if (mesh !== null) {
+    // remove previous mesh
+    drawing.resetRenderVariables();
+    geometry.dispose();
+    material.dispose();
+    scene.remove(mesh);
+  }
+  const codeString = Drawing.getCodeString(rules, axiom, iterCount);
+  const points = drawing.getPoints(codeString, angleDelta);
+  material = new THREE.LineBasicMaterial({
+    color: "#212121",
+  });
+  geometry = new THREE.BufferGeometry().setFromPoints(points);
+  mesh = new THREE.LineSegments(geometry, material);
+
+  scene.add(mesh);
+};
+createMesh();
 
 const animate = () => {
   // Update controls
