@@ -77,6 +77,18 @@ const createMesh = () => {
   geometry = new THREE.BufferGeometry().setFromPoints(points);
   mesh = new THREE.LineSegments(geometry, material);
 
+  mesh.geometry.computeBoundingSphere();
+  mesh.geometry.computeBoundingBox();
+  // Controls centering
+  controls.target.copy(mesh.geometry.boundingSphere.center);
+
+  // Camera centering
+  const { min, max } = mesh.geometry.boundingBox;
+  const size = Math.max(Math.abs(min.x - max.x), Math.abs(min.y - max.y));
+  camera.position.x = mesh.geometry.boundingSphere.center.x;
+  camera.position.y = mesh.geometry.boundingSphere.center.y;
+  camera.position.z = size * 0.7; // distance to object
+
   scene.add(mesh);
 };
 createMesh();
