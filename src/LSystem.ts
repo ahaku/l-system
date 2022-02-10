@@ -6,12 +6,12 @@ export interface Values {
 export type Rules = {
   [key in RulesChars]?: string;
 };
-interface LSystemData {
+export interface LSystemData {
   values: Values;
   rules: Rules;
 }
 type RulesChars = "A" | "B" | "F" | "G" | "X" | "Y" | "-" | "+" | "[" | "]";
-
+export type LSystemKeys = keyof LSystem;
 export default class LSystem {
   tree: LSystemData;
   dragonCurve: LSystemData;

@@ -2,12 +2,25 @@ import "./style.scss";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Drawing from "./drawing";
-import LSystem from "./LSystem";
+import { LSystemKeys } from "./LSystem";
+import { generateOptions, setFormData } from "./domHelpers";
 
-const canvas = document.querySelector("canvas.webgl");
-const lSystem = new LSystem();
 const drawing = new Drawing();
 
+// DOM
+const canvas = document.querySelector("canvas.webgl");
+const select: HTMLSelectElement = document.querySelector("[name^=type-select]");
+generateOptions();
+const form: HTMLFormElement = document.querySelector(".form");
+select.onchange = (e: Event) => {
+  const { value } = <HTMLSelectElement>e.target;
+  setFormData(value as LSystemKeys);
+  generate();
+};
+form.onsubmit = (e: SubmitEvent) => {
+  e.preventDefault();
+  generate();
+};
 // Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xcc_cc_cc);
@@ -52,10 +65,10 @@ window.addEventListener("resize", () => {
 });
 
 // Drawing
-let axiom = lSystem.tree.values.axiom;
-let rules = lSystem.tree.rules;
-let iterCount = lSystem.tree.values.iterations;
-let angleDelta = lSystem.tree.values.angleDelta;
+let axiom = null;
+let rules = null;
+let iterCount = null;
+let angleDelta = null;
 
 let geometry: null | THREE.BufferGeometry = null;
 let material: null | THREE.LineBasicMaterial = null;
@@ -91,7 +104,32 @@ const createMesh = () => {
 
   scene.add(mesh);
 };
-createMesh();
+function generate() {
+  const fd = new FormData(document.forms["LSystem"]);
+  if (fd) {
+    const axiomInput = fd.get("axiom");
+    const iterations = fd.get("iterations");
+    const angleDeltaInput = fd.get("angleDelta");
+
+    const rulesFromForm = Array.from(fd.entries())
+      .filter(([name]) => name.startsWith("rule"))
+      .reduce((acc, [k, v]) => {
+        const key = k[k.length - 1];
+        return { ...acc, [key]: v };
+      }, {});
+
+    rules = rulesFromForm;
+    iterCount = Number(iterations);
+    axiom = axiomInput;
+    angleDelta = Number(angleDeltaInput);
+
+    createMesh();
+  }
+}
+
+// initial render
+setFormData(select.value as LSystemKeys);
+generate();
 
 const animate = () => {
   // Update controls
