@@ -1,6 +1,5 @@
 import { selectOptions } from "./constants";
-import LSystem, { LSystemKeys, Rules, Values } from "./LSystem";
-const lSystem = new LSystem();
+import { LSystemKeys, LSystem, Rules, Values } from "./LSystem";
 
 export const generateOptions = () => {
   const selectNode: HTMLSelectElement = document.querySelector(
@@ -29,8 +28,8 @@ const removeRulesInputs = () => {
 };
 
 export const setFormData = (type: LSystemKeys) => {
-  setValuesInputs(lSystem[type].values);
-  addRulesFields(lSystem[type].rules);
+  setValuesInputs(LSystem[type].values);
+  addRulesFields(LSystem[type].rules);
 };
 
 const addRulesFields = (rulesObject: Rules) => {

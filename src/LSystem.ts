@@ -11,8 +11,7 @@ export interface LSystemData {
   rules: Rules;
 }
 type RulesChars = "A" | "B" | "F" | "G" | "X" | "Y" | "-" | "+" | "[" | "]";
-export type LSystemKeys = keyof LSystem;
-export default class LSystem {
+type LSystemType = {
   tree: LSystemData;
   dragonCurve: LSystemData;
   serpinskiTriangle: LSystemData;
@@ -36,33 +35,9 @@ export default class LSystem {
   mazeAndFractal: LSystemData;
   moore: LSystemData;
   doily: LSystemData;
+};
+export type LSystemKeys = keyof LSystemType;
 
-  constructor() {
-    this.tree = treeData;
-    this.dragonCurve = dragonCurveData;
-    this.serpinskiTriangle = serpinskiTriangleData;
-    this.serpinskiTriangleApproximate = serpinskiTriangleApproximateData;
-    this.serpinskiCurve = serpinskiCurveData;
-    this.serpinskiCarpet = serpinskiCarpetData;
-    this.kochCurve = kochCurveData;
-    this.kochSnowflake = kochSnowflakeData;
-    this.iceFractal = iceFractalData;
-    this.gosperCurve = gosperCurveData;
-    this.hilbertCurve = hilbertCurveData;
-    this.squareCarpet = squareCarpetData;
-    this.plant1 = plant1Data;
-    this.plant2 = plant2Data;
-    this.plant3 = plant3Data;
-    this.boxFractal = boxFractalData;
-    this.mosaic = mosaicData;
-    this.levyCurve = levyCurveData;
-    this.pentigree = pentigreeData;
-    this.border = borderData;
-    this.mazeAndFractal = mazeAndFractalData;
-    this.moore = mooreData;
-    this.doily = doilyData;
-  }
-}
 const treeData: LSystemData = {
   values: {
     axiom: "X",
@@ -325,4 +300,30 @@ const doilyData: LSystemData = {
   rules: {
     F: "-F[--F--F]++F--F+",
   },
+};
+
+export const LSystem: LSystemType = {
+  tree: treeData,
+  dragonCurve: dragonCurveData,
+  serpinskiTriangle: serpinskiTriangleData,
+  serpinskiTriangleApproximate: serpinskiTriangleApproximateData,
+  serpinskiCurve: serpinskiCurveData,
+  serpinskiCarpet: serpinskiCarpetData,
+  kochCurve: kochCurveData,
+  kochSnowflake: kochSnowflakeData,
+  iceFractal: iceFractalData,
+  gosperCurve: gosperCurveData,
+  hilbertCurve: hilbertCurveData,
+  squareCarpet: squareCarpetData,
+  plant1: plant1Data,
+  plant2: plant2Data,
+  plant3: plant3Data,
+  boxFractal: boxFractalData,
+  mosaic: mosaicData,
+  levyCurve: levyCurveData,
+  pentigree: pentigreeData,
+  border: borderData,
+  mazeAndFractal: mazeAndFractalData,
+  moore: mooreData,
+  doily: doilyData,
 };
