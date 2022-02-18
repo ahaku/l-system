@@ -8,8 +8,34 @@ import { generateOptions, setFormData } from "./domHelpers";
 const drawing = new Drawing();
 
 // DOM
+let isSidebarPinned = false;
 const canvas = document.querySelector("canvas.webgl");
 const select: HTMLSelectElement = document.querySelector("[name^=type-select]");
+const sidebar = document.querySelector(".sidebar");
+const showSidebarBtn: HTMLElement = document.querySelector(".show-sidebar-btn");
+const pinSidebarBtn: HTMLElement = document.querySelector("[class*=pin-btn]");
+const onSidebarOutsideClick = (e: MouseEvent) => {
+  if (isSidebarPinned) return;
+  if (!sidebar.contains(e.target as Node)) {
+    sidebar.classList.remove("visible");
+    showSidebarBtn.classList.add("visible");
+  }
+};
+document.addEventListener("mousedown", onSidebarOutsideClick);
+document.addEventListener("touchstart", onSidebarOutsideClick);
+showSidebarBtn.onclick = () => {
+  sidebar.classList.add("visible");
+  showSidebarBtn.classList.remove("visible");
+};
+pinSidebarBtn.onclick = () => {
+  isSidebarPinned = !isSidebarPinned;
+  if (isSidebarPinned) {
+    pinSidebarBtn.classList.add("active");
+  } else {
+    pinSidebarBtn.classList.remove("active");
+  }
+};
+
 generateOptions();
 const form: HTMLFormElement = document.querySelector(".form");
 select.onchange = (e: Event) => {
@@ -21,6 +47,7 @@ form.onsubmit = (e: SubmitEvent) => {
   e.preventDefault();
   generate();
 };
+
 // Scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xcc_cc_cc);
