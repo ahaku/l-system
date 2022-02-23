@@ -50,7 +50,7 @@ form.onsubmit = (e: SubmitEvent) => {
 
 // Scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xcc_cc_cc);
+scene.background = new THREE.Color(0xff_ff_ff);
 
 const sizes = {
   width: window.innerWidth,
