@@ -44,6 +44,7 @@ const addRulesFields = (rulesObject: Rules) => {
     inputNode.setAttribute("name", `rule${char}`);
     inputNode.setAttribute("value", value);
     inputNode.setAttribute("type", "text");
+    inputNode.addEventListener("keyup", inputHandler);
     form.insertBefore(labelNode, form.children[form.children.length - 1]);
     form.insertBefore(inputNode, form.children[form.children.length - 1]);
   });
@@ -55,3 +56,6 @@ const setValuesInputs = (valuesObject: Values) => {
     if (form) form[key].value = value;
   });
 };
+export function inputHandler(this: HTMLInputElement) {
+  this.value = this.value.replace(/[^ABFGXY\-\+\[\]]/gi, "");
+}

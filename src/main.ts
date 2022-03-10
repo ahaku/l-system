@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Drawing from "./drawing";
 import { LSystemKeys } from "./LSystem";
-import { generateOptions, setFormData } from "./domHelpers";
+import { inputHandler, generateOptions, setFormData } from "./domHelpers";
 
 const drawing = new Drawing();
 
@@ -14,6 +14,8 @@ const select: HTMLSelectElement = document.querySelector("[name^=type-select]");
 const sidebar = document.querySelector(".sidebar");
 const showSidebarBtn: HTMLElement = document.querySelector(".show-sidebar-btn");
 const pinSidebarBtn: HTMLElement = document.querySelector("[class*=pin-btn]");
+const axiomInput: HTMLInputElement = document.querySelector("[name=axiom]");
+axiomInput.addEventListener("keyup", inputHandler);
 const onSidebarOutsideClick = (e: MouseEvent) => {
   if (isSidebarPinned) return;
   if (!sidebar.contains(e.target as Node)) {
