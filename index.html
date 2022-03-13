@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAZVJREFUWEftl71qAkEURk+CYqvlNhZi6wsIFqJgra12WsiCndWSNAoBUawkoJ3iC9iKra0glhaCRfYJFAVlwwiRNRFm4t8msLe+935nvtmdmftkWdYzYAA6oPGYMIF34O3JsqwXoPoY3R8qrwLg44Er/05gCgDLodUfZP8HwGazYb/fnzXK5/Ph8XguNlHJgXQ6zXQ6PStiGAaFQsE5gGw2S7V6+U90tQOxWIxut3tfB0zTZDKZUCqVjkLBYJB6vU44HCYQCNwXQHRfLBYkEomjUCQSYTAYXCz8Vai0BS6A64DrgOvAbxyYzWbsdrvDDSkOK1nc9CBaLpfE43HEGycUCjEajWT66g8SlaO41WrRbDYPotFolH6/fxuA7XbLeDw+ufc1TSOfz58I9Ho9hAsiMpkMjUbjNgCpVIr5fC5tZk/QdZ1yuSytUfoGisUiw+FQ2syeUKlUyOVy0holgFqtRrvdljazJ3Q6HZLJpLRGCWC9XrNaraTN7Al+vx+v1yutUQKQdrki4U8AOD6aOT6cOjqefwKF6it+9MqpsQAAAABJRU5ErkJggg==" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L-System</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="/assets/index.fc8beede.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.c224f0a2.js">
+    <link rel="stylesheet" href="/assets/index.30926cb5.css">
+  </head>
+  <body>
+    <button title="Show sidebar" class="show-sidebar-btn">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </button>
+    <div class="sidebar visible">
+      <div class="sidebar__header">
+        <h1>
+          <a
+            href="https://en.wikipedia.org/wiki/L-system"
+            target="__blank"
+            rel="noopener noreferrer"
+            >L-System</a
+          >
+        </h1>
+        <button class="sidebar__pin-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <defs>
+              <style>
+                .a {
+                  fill: none;
+                  stroke: #000;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                }
+              </style>
+            </defs>
+            <line class="a" x1="9.914" y1="14.086" x2="0.5" y2="23.5" />
+            <path
+              class="a"
+              d="M21.414,8.586a.707.707,0,0,0,1,0l.793-.793a1,1,0,0,0,0-1.414L17.621.793a1,1,0,0,0-1.414,0l-.793.793a.707.707,0,0,0,0,1,.707.707,0,0,1,0,1L11.207,7.793a1,1,0,0,1-.707.293H7.328a1,1,0,0,0-.707.293l-.5.5a1,1,0,0,0,0,1.414l7.586,7.586a1,1,0,0,0,1.414,0l.5-.5a1,1,0,0,0,.293-.707V13.5a1,1,0,0,1,.293-.707l4.207-4.207A.707.707,0,0,1,21.414,8.586Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="sidebar__content">
+        <div class="type-select-wrapper">
+          <label for="type-select">Type</label>
+          <select name="type-select"></select>
+        </div>
+        <form
+          class="form"
+          onsubmit="return false"
+          name="LSystem"
+          autocomplete="off"
+        >
+          <label for="iterations">Iterations number</label>
+          <input type="number" name="iterations" required max="20" min="1" />
+
+          <label for="angleDelta">Angle delta</label>
+          <input type="number" name="angleDelta" />
+
+          <div class="form__separator"></div>
+
+          <h4>Alphabet:</h4>
+          <p class="form__alphabet">
+            <span><b>A, F, G</b>: Draw forward</span>
+            <span
+              ><b>B</b>: Skip (used to control the evolution of the curve)
+            </span>
+            <span><b>-</b>: Turn left by angle delta </span>
+            <span><b>+</b>: Turn right by angle delta</span>
+            <span
+              ><b>[</b>: Save the current values for position and angle</span
+            >
+            <span
+              ><b>]</b>: Restore the saved values for position and angle
+            </span>
+          </p>
+
+          <label for="axiom">Axiom</label>
+          <input type="text" name="axiom" required />
+
+          <button type="submit" class="submit-btn">Generate</button>
+        </form>
+      </div>
+    </div>
+    <canvas class="webgl"></canvas>
+    
+  </body>
+</html>
