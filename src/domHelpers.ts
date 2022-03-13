@@ -57,5 +57,5 @@ const setValuesInputs = (valuesObject: Values) => {
   });
 };
 export function inputHandler(this: HTMLInputElement) {
-  this.value = this.value.replace(/[^ABFGXY\-\+\[\]]/gi, "");
+  this.value = this.value.replace(/[^ABFGXY\-\+\[\]]/gi, "").toUpperCase();
 }
