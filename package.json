@@ -1,12 +1,16 @@
 {
   "name": "l-system",
   "version": "1.0.0",
+  "homepage": "http://ahaku.github.io/l-system",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "sass": "^1.49.7",
     "typescript": "^4.4.4",
     "vite": "^2.7.2"
