@@ -1,7 +1,7 @@
 {
   "name": "l-system",
   "version": "1.0.0",
-  "homepage": "http://ahaku.github.io/l-system",
+  "homepage": "https://ahaku.github.io/l-system",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
