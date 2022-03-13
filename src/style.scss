@@ -73,6 +73,15 @@ body {
       font-size: 20px;
       margin: 0;
     }
+
+    a {
+      text-decoration: underline;
+      color: $mainBlack;
+      transition: opacity 0.2s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
   &__pin-btn {
     cursor: pointer;
@@ -121,6 +130,20 @@ body {
 
 .form {
   display: grid;
+
+  h4 {
+    margin: 0;
+  }
+  &__separator {
+    border-bottom: 1px solid rgb(207, 207, 207);
+    margin-bottom: 10px;
+  }
+
+  &__alphabet {
+    font-size: 14px;
+    margin: 0px 0px 10px 0px;
+    display: grid;
+  }
 }
 .type-select-wrapper {
   margin-bottom: 28px;

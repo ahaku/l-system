@@ -27,7 +27,14 @@
     </button>
     <div class="sidebar visible">
       <div class="sidebar__header">
-        <h1>L-System</h1>
+        <h1>
+          <a
+            href="https://en.wikipedia.org/wiki/L-system"
+            target="__blank"
+            rel="noopener noreferrer"
+            >L-System</a
+          >
+        </h1>
         <button class="sidebar__pin-btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <defs>
@@ -59,14 +66,33 @@
           name="LSystem"
           autocomplete="off"
         >
-          <label for="axiom">Axiom</label>
-          <input type="text" name="axiom" required />
-
           <label for="iterations">Iterations number</label>
           <input type="number" name="iterations" required max="20" min="1" />
 
           <label for="angleDelta">Angle delta</label>
           <input type="number" name="angleDelta" />
+
+          <div class="form__separator"></div>
+
+          <h4>Alphabet:</h4>
+          <p class="form__alphabet">
+            <span><b>A, F, G</b>: Draw forward</span>
+            <span
+              ><b>B</b>: Skip (used to control the evolution of the curve)
+            </span>
+            <span><b>-</b>: Turn left by angle delta </span>
+            <span><b>+</b>: Turn right by angle delta</span>
+            <span
+              ><b>[</b>: Save the current values for position and angle</span
+            >
+            <span
+              ><b>]</b>: Restore the saved values for position and angle
+            </span>
+          </p>
+
+          <label for="axiom">Axiom</label>
+          <input type="text" name="axiom" required />
+
           <button type="submit" class="submit-btn">Generate</button>
         </form>
       </div>
