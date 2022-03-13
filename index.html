@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>L-System</title>
     <link
@@ -20,6 +20,83 @@
     />
   </head>
   <body>
+    <button title="Show sidebar" class="show-sidebar-btn">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </button>
+    <div class="sidebar visible">
+      <div class="sidebar__header">
+        <h1>
+          <a
+            href="https://en.wikipedia.org/wiki/L-system"
+            target="__blank"
+            rel="noopener noreferrer"
+            >L-System</a
+          >
+        </h1>
+        <button class="sidebar__pin-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <defs>
+              <style>
+                .a {
+                  fill: none;
+                  stroke: #000;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                }
+              </style>
+            </defs>
+            <line class="a" x1="9.914" y1="14.086" x2="0.5" y2="23.5" />
+            <path
+              class="a"
+              d="M21.414,8.586a.707.707,0,0,0,1,0l.793-.793a1,1,0,0,0,0-1.414L17.621.793a1,1,0,0,0-1.414,0l-.793.793a.707.707,0,0,0,0,1,.707.707,0,0,1,0,1L11.207,7.793a1,1,0,0,1-.707.293H7.328a1,1,0,0,0-.707.293l-.5.5a1,1,0,0,0,0,1.414l7.586,7.586a1,1,0,0,0,1.414,0l.5-.5a1,1,0,0,0,.293-.707V13.5a1,1,0,0,1,.293-.707l4.207-4.207A.707.707,0,0,1,21.414,8.586Z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="sidebar__content">
+        <div class="type-select-wrapper">
+          <label for="type-select">Type</label>
+          <select name="type-select"></select>
+        </div>
+        <form
+          class="form"
+          onsubmit="return false"
+          name="LSystem"
+          autocomplete="off"
+        >
+          <label for="iterations">Iterations number</label>
+          <input type="number" name="iterations" required max="20" min="1" />
+
+          <label for="angleDelta">Angle delta</label>
+          <input type="number" name="angleDelta" />
+
+          <div class="form__separator"></div>
+
+          <h4>Alphabet:</h4>
+          <p class="form__alphabet">
+            <span><b>A, F, G</b>: Draw forward</span>
+            <span
+              ><b>B</b>: Skip (used to control the evolution of the curve)
+            </span>
+            <span><b>-</b>: Turn left by angle delta </span>
+            <span><b>+</b>: Turn right by angle delta</span>
+            <span
+              ><b>[</b>: Save the current values for position and angle</span
+            >
+            <span
+              ><b>]</b>: Restore the saved values for position and angle
+            </span>
+          </p>
+
+          <label for="axiom">Axiom</label>
+          <input type="text" name="axiom" required />
+
+          <button type="submit" class="submit-btn">Generate</button>
+        </form>
+      </div>
+    </div>
     <canvas class="webgl"></canvas>
     <script type="module" src="/src/main.ts"></script>
   </body>

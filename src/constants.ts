@@ -1,0 +1,27 @@
+import { LSystemKeys } from "./LSystem";
+
+export const selectOptions: Record<LSystemKeys, string> = {
+  tree: "Fractal Tree",
+  dragonCurve: "Dragon Curve",
+  serpinskiTriangle: "Serpinski Triangle",
+  serpinskiTriangleApproximate: "Serpinski Triangle (Approximate)",
+  serpinskiCurve: "Serpinski Curve",
+  serpinskiCarpet: "Serpinski Carpet",
+  kochCurve: "Koch Curve",
+  kochSnowflake: "Koch Snowflake",
+  iceFractal: "Ice Fractal",
+  gosperCurve: "Gosper Curve",
+  hilbertCurve: "Hilbert Curve",
+  squareCarpet: "Square Carpet",
+  plant1: "A Plant (Type 1)",
+  plant2: "A Plant (Type 2)",
+  plant3: "A Plant (Type 3)",
+  boxFractal: "Box Fractal",
+  mosaic: "Mosaic",
+  levyCurve: "Levy C curve",
+  pentigree: "McWorter's Pentigree",
+  border: "McWorter's Border",
+  mazeAndFractal: "McWorter's Maze and Fractal",
+  moore: "McWorter's Moore",
+  doily: "Adrian Mariano Doily",
+};
