@@ -1,6 +1,6 @@
 {
-  "name": "l-system-ts",
-  "version": "0.0.0",
+  "name": "l-system",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
